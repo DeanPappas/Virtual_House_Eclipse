@@ -10,8 +10,10 @@ class House {
 		Scanner input = new Scanner(System.in);
 		boolean running = true;
 
-		System.out.println("Welcome to your virtual home, which room would you like to visit?\n");
-		System.out.println("Living Room\n"
+		System.out
+				.println("Welcome to your virtual home, which room would you like to visit?\n");
+		System.out
+				.println("Living Room\n"
 						+ "Kitchen\n"
 						+ "Bedroom\n"
 						+ "Bathroom\n"
@@ -23,34 +25,54 @@ class House {
 			String action = "";
 
 			room = input.nextLine();
-			
-			if(room.equals("rooms")) {
-				System.out.println("Living Room\n"
-						+ "Kitchen\n"
-						+ "Bedroom\n"
-						+ "Bathroom\n"
-						+ "\n"
-						+ "(Type \"exit\" to leave house)");
+
+			if (room.equals("rooms")) {
+				System.out.println("Living Room\n" 
+								+ "Kitchen\n" 
+								+ "Bedroom\n"
+								+ "Bathroom\n" + "\n"
+								+ "(Type \"exit\" to leave house)");
 			}
 
 			switch (room.toLowerCase()) {
-			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Living Room~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Living_Room~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			case "living room":
 				// Room and Current Status
-				System.out.printf("You enter the living room, the lights are %s%n", Living_Room.lightsStatus());
+				System.out.printf(
+						"You enter the living room, the lights are %s%n",
+						Living_Room.lightsStatus());
 				while (room.equalsIgnoreCase("living room")) {
 
 					action = input.nextLine();
 					// Lights
 					if (action.equalsIgnoreCase("turn on lights")
 							|| action.equalsIgnoreCase("turn lights on")) {
-						Living_Room.Lights();
+						Living_Room.lightsOn();
 					}
 					if (action.equalsIgnoreCase("turn off lights")
 							|| action.equalsIgnoreCase("turn lights off")) {
-						Living_Room.Lights();
+						Living_Room.lightsOff();
 					}
-					// **SOME ACTION
+					// TV Power
+					if (action.equalsIgnoreCase("turn on tv")
+							|| action.equalsIgnoreCase("turn tv on")) {
+						Living_Room.tvPowerOn();
+						System.out.printf("%s is playing%n", Living_Room.channel(6)) ;
+					}
+					if (action.equalsIgnoreCase("turn off tv")
+							|| action.equalsIgnoreCase("turn tv off")) {
+						Living_Room.tvPowerOff();
+					}
+					//TV Control
+					if (action.equalsIgnoreCase("change channel")) {
+						System.out.println("Choose a channel (1-6):");
+						int channel = input.nextInt();
+						System.out.printf("You changed the channel to %s%n", Living_Room.channel(channel));
+					}
+					//Watch TV
+					if (action.equalsIgnoreCase("watch tv")) {
+						System.out.println(Living_Room.channelView());
+					}
 
 					// Leave Room
 					if (action.equalsIgnoreCase("leave")
@@ -62,22 +84,23 @@ class House {
 					}
 				}
 				break;
-			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Living Room~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Living_Room~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			// -------------------------------------------------------------------------------------------------
 			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Kitchen~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			case "kitchen":
 				// Room and Current Status
-				System.out.printf("You enter the kitchen, the lights are %s%n", Kitchen.lightsStatus());
+				System.out.printf("You enter the kitchen, the lights are %s%n",
+						Kitchen.lightsStatus());
 				while (room.equalsIgnoreCase("kitchen")) {
 					action = input.nextLine();
 					// Lights
 					if (action.equalsIgnoreCase("turn on lights")
 							|| action.equalsIgnoreCase("turn lights on")) {
-						Kitchen.Lights();
+						Kitchen.lights();
 					}
 					if (action.equalsIgnoreCase("turn off lights")
 							|| action.equalsIgnoreCase("turn lights off")) {
-						Kitchen.Lights();
+						Kitchen.lights();
 					}
 					// *SOME ACTION*
 
@@ -96,17 +119,18 @@ class House {
 			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bedroom~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			case "bedroom":
 				// Room and Current Status
-				System.out.printf("You enter the bedroom, the lights are %s%n", Bedroom.lightsStatus());
+				System.out.printf("You enter the bedroom, the lights are %s%n",
+						Bedroom.lightsStatus());
 				while (room.equalsIgnoreCase("bedroom")) {
 					action = input.nextLine();
 					// Lights
 					if (action.equalsIgnoreCase("turn on lights")
 							|| action.equalsIgnoreCase("turn lights on")) {
-						Bedroom.Lights();
+						Bedroom.lights();
 					}
 					if (action.equalsIgnoreCase("turn off lights")
 							|| action.equalsIgnoreCase("turn lights off")) {
-						Bedroom.Lights();
+						Bedroom.lights();
 					}
 					// *SOME ACTION*
 
@@ -126,8 +150,7 @@ class House {
 			case "bathroom":
 				// Room and Current Status
 				System.out.printf(
-						"You enter the bathroom, the lights are %s\n",
-						Bathroom.lightsStatus());
+						"You enter the bathroom, the lights are %s%n", Bathroom.lightsStatus());
 				while (room.equalsIgnoreCase("bathroom")) {
 					action = input.nextLine();
 					// Lights
@@ -155,21 +178,22 @@ class House {
 			// -------------------------------------------------------------------------------------------------
 			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Exit~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			case "exit":
-				if (Living_Room.lightsStatus().equals("On")
-						|| Kitchen.lightsStatus().equals("On")
-						|| Bedroom.lightsStatus().equals("On")
-						|| Bathroom.lightsStatus().equals("On")) {
+				if (Living_Room.lightsStatus().equals("on")
+						|| Kitchen.lightsStatus().equals("on")
+						|| Bedroom.lightsStatus().equals("on")
+						|| Bathroom.lightsStatus().equals("on")
+						|| Living_Room.tvPowerOn() == 1) {
 					System.out.println("Make sure everything is off...");
 				} else {
 					System.out.println("Leaving Virtual House...");
 					running = false;
 				}
 				break;
-			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Exit~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Exit~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			default:
 				break;
 			}
-			
+
 		}
 		input.close();
 	}
