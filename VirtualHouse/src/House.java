@@ -10,11 +10,13 @@ class House {
 		Scanner input = new Scanner(System.in);
 		boolean running = true;
 
-		System.out
-				.println("Welcome to your virtual home, which room would you like to visit?%n");
-		System.out
-				.println("Living Room\nKitchen\nBedroom\nBathroom\n\n(Type \"exit\" to leave house,"
-						+ " type \"rooms\" to view rooms)");
+		System.out.println("Welcome to your virtual home, which room would you like to visit?\n");
+		System.out.println("Living Room\n"
+						+ "Kitchen\n"
+						+ "Bedroom\n"
+						+ "Bathroom\n"
+						+ "\n"
+						+ "(Type \"exit\" to leave house, type \"rooms\" to view rooms)");
 
 		while (running) {
 			String room = "";
@@ -23,7 +25,12 @@ class House {
 			room = input.nextLine();
 			
 			if(room.equals("rooms")) {
-				System.out.println("Living Room\nKitchen\nBedroom\nBathroom\n\n(Type \"exit\" to leave house)");
+				System.out.println("Living Room\n"
+						+ "Kitchen\n"
+						+ "Bedroom\n"
+						+ "Bathroom\n"
+						+ "\n"
+						+ "(Type \"exit\" to leave house)");
 			}
 
 			switch (room.toLowerCase()) {
@@ -60,8 +67,7 @@ class House {
 			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Kitchen~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			case "kitchen":
 				// Room and Current Status
-				System.out.printf("You enter the kitchen, the lights are %s%n",
-						Kitchen.lightsStatus());
+				System.out.printf("You enter the kitchen, the lights are %s%n", Kitchen.lightsStatus());
 				while (room.equalsIgnoreCase("kitchen")) {
 					action = input.nextLine();
 					// Lights
@@ -90,8 +96,7 @@ class House {
 			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bedroom~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			case "bedroom":
 				// Room and Current Status
-				System.out.printf("You enter the bedroom, the lights are %s%n",
-						Bedroom.lightsStatus());
+				System.out.printf("You enter the bedroom, the lights are %s%n", Bedroom.lightsStatus());
 				while (room.equalsIgnoreCase("bedroom")) {
 					action = input.nextLine();
 					// Lights
@@ -121,7 +126,7 @@ class House {
 			case "bathroom":
 				// Room and Current Status
 				System.out.printf(
-						"You enter the bathroom, the lights are %s%n",
+						"You enter the bathroom, the lights are %s\n",
 						Bathroom.lightsStatus());
 				while (room.equalsIgnoreCase("bathroom")) {
 					action = input.nextLine();
