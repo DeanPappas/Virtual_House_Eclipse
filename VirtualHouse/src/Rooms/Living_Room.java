@@ -37,27 +37,33 @@ public class Living_Room {
 		return status;
 	}
 	// Turns TV Power On/Off
-	public static int tvPowerOn() {
+	public static void tvPowerOn() {
 		if (tvPower == 0) {
 			tvPower = 1;
 			System.out.println("TV Turned on");
-			return tvPower;
 		}
 		else {
 			System.out.println("TV is already on");
-			return tvPower;
 		}
 	}
-	public static int tvPowerOff() {
+	public static void tvPowerOff() {
 		if (tvPower == 1) {
 			tvPower = 0;
 			System.out.println("TV Turned off");
-			return tvPower;
 		}
 		else {
 			System.out.println("TV is already off");
-			return tvPower;
 		}
+	}
+	// Returns Status of TV (On/Off)
+	public static String tvStatus() {
+		String status = "";
+		if (tvPower == 0) {
+			status = "off";
+		} else if (tvPower == 1) {
+			status = "on";
+		}
+		return status;
 	}
 	// TV Channels
 	public static String channel(int tvInput) {
@@ -108,7 +114,7 @@ public class Living_Room {
 			} else if (tvChannel == 5) {
 				return "Alton Brown is beating a live cow to death with\n"
 						+ "his bare hands. He says this is the easy part,\n"
-						+ "just wait until we have to add the  eggs";
+						+ "just wait until we have to add the eggs";
 			} else if (tvChannel == 6) {
 				return "Channel 1: Sports\n" + "Channel 2: Movies\n"
 						+ "Channel 3: Soap Operas\n" + "Channel 4: Cartoons\n"

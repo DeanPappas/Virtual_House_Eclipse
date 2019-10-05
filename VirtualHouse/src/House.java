@@ -44,6 +44,12 @@ class House {
 				while (room.equalsIgnoreCase("living room")) {
 
 					action = input.nextLine();
+					//Look around
+					if (action.equalsIgnoreCase("look")
+							|| action.equalsIgnoreCase("look around")) {
+						System.out.println("A light switch is to your left, "
+								+ "and a TV is in front of the couch");
+					}
 					// Lights
 					if (action.equalsIgnoreCase("turn on lights")
 							|| action.equalsIgnoreCase("turn lights on")) {
@@ -182,7 +188,7 @@ class House {
 						|| Kitchen.lightsStatus().equals("on")
 						|| Bedroom.lightsStatus().equals("on")
 						|| Bathroom.lightsStatus().equals("on")
-						|| Living_Room.tvPowerOn() == 1) {
+						|| Living_Room.tvStatus().equals("on")) {
 					System.out.println("Make sure everything is off...");
 				} else {
 					System.out.println("Leaving Virtual House...");
